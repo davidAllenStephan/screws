@@ -39,16 +39,18 @@ public class Bolt {
     }
 
     private int findTopNutIndex() { // Find top nut index
-        for (int i = 0; i < this.nuts.size(); i++) { // Iterates top to bottom returns first not null index
+        int i = 0;
+        while (i < this.nuts.size()) {
             if (this.nuts.get(i) != null) {
                 return i;
             }
+            i++;
         }
         return -1;
     }
 
     private boolean isFull() {
-        return findTopNutIndex() == this.length - 1; // Top nut is same as bolt length
+        return findTopNutIndex() == this.length; // Top nut is same as bolt length
     }
 
     private boolean isEmpty() {
@@ -63,59 +65,49 @@ public class Bolt {
         return this;
     }
 
-//    public Bolt add(ArrayList<Nut> nuts) {
-//        if (this.nuts.size()-1 < this.length) {
-//            for (Nut nut : nuts) {
-//                if (this.isEmpty() && this.nuts.size() <= 1) { // Empty and size is 0 or 1
-//                    this.nuts.addFirst(nut);
-//                    this.spaceIndex = 0;
-//                } else if (this.isEmpty() && this.nuts.size() > 1) { // Empty and size is greater than 0 or 1
-//                    this.nuts.addLast(nut);
-//                    this.spaceIndex = this.nuts.size() - 2;
-//                } else { // Not empty but this.nuts size is less than the space available
-//                    int j = this.nuts.size() - 1;
-//                    while (j >= 0) {
-//                        if (this.nuts.get(j) == null) { // There is a null spot available
-//                            this.nuts.set(j, nut);
-//                            this.spaceIndex = j;
-//                        }
-//                        j--;
-//                    }
-//                    if (j == -1) {
-//                        this.nuts.addFirst(nut);
-//                        this.spaceIndex = 0;
-//                    }
-//                }
-//            }
-//        } else {
-//            if (isFull()) throw new BoltException("Bolt is full cannot add");
-//            for (Nut nut: nuts) {
-//                if (this.nuts.get(this.spaceIndex).getColor() != nut.getColor()) throw new BoltException("Nut color does not match");
-//                this.nuts.set(this.spaceIndex-1, nut);
-//                this.spaceIndex--;
-//            }
-//        }
-//        return this;
-//    }
-
     public ArrayList<Nut> remove() {
         if (isEmpty()) throw new BoltException("Bolt is empty cannot remove");
         ArrayList<Nut> nnuts = new ArrayList<>();
         int topIndex = this.findTopNutIndex();
         nnuts.add(this.nuts.get(topIndex));
-        for (int i = topIndex; i < this.nuts.size() - 1; i++) {
-            if (this.nuts.get(i).getColor() == this.nuts.get(i+1).getColor()) {
-                nnuts.add(this.nuts.get(i+1));
-                this.nuts.set(i+1, null);
+        int i = topIndex+1;
+        while (i < this.nuts.size()) {
+            if (this.nuts.get(i) != null) {
+                if (nnuts.getFirst().getColor() == this.nuts.get(i).getColor()) {
+                    nnuts.addFirst(this.nuts.get(i));
+                    this.nuts.set(i, null);
+                } else {
+                    break;
+                }
             }
+            i++;
         }
         this.nuts.set(topIndex, null);
         return nnuts;
     }
 
+    public boolean isSameColor(Bolt nbolt) {
+        int nTopIndex = nbolt.findTopNutIndex();
+        int topIndex = this.findTopNutIndex();
+        System.out.println("nTopIndex: " + nTopIndex);
+        System.out.println("topIndex: " + topIndex);
+        if (nTopIndex == -1) {
+            return true;
+        } else if (topIndex == -1) {
+            return false;
+        }
+        int nBoltColor = nbolt.nuts.get(nTopIndex).getColor();
+        int boltColor = this.nuts.get(topIndex).getColor();
+        System.out.println("nBoltColor: " + nBoltColor);
+        System.out.println("boltColor: " + boltColor);
+        return nBoltColor == boltColor;
+        // This is returning true should be false
+    }
+
     public Bolt shiftAway(Bolt nbolt) {
         if (nbolt == null) throw new BoltException("Bolt null cannot shift");
         if (nbolt.isFull()) throw new BoltException("NBolt is full cannot shift");
+        if (!this.isSameColor(nbolt)) throw new BoltException("Not the same color!");
         ArrayList<Nut> nnuts = this.remove();
         nbolt.addNutToTop(nnuts);
         return nbolt;
