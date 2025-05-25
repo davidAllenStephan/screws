@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
         // int[][] nboard = {{2,6},{0,6},{0,1}, {}, {}};
-        Board board = new Board(8,5);
+        Board board = new Board(9,3);
         board.print();
         while (true) {
             int[] control = Input.input();

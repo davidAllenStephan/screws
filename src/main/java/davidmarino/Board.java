@@ -43,6 +43,9 @@ public class Board {
             bar[i] = nuts;
         }
         int[][] foo = shuffle(bar);
+        for (int i = 0; i < 100; i++) {
+            foo = shuffle(foo);
+        }
         for (int i = 0; i < dis; i++) {
             this.bolts.add(new Bolt(foo[i], length));
         }
@@ -58,17 +61,31 @@ public class Board {
         for (Bolt bolt : bolts) {
             maxHeight = Math.max(maxHeight, bolt.getHeight());
         }
+
+        StringBuilder sb = new StringBuilder();
+
+        // ANSI code to move cursor to top-left (home) and clear the screen
+        sb.append("\u001b[H"); // Move cursor to home
+        sb.append("\u001b[2J"); // Clear screen
+
+        // Build the board
         for (int row = 0; row < maxHeight; row++) {
             for (Bolt bolt : bolts) {
                 int nutRow = bolt.getHeight() - maxHeight + row;
-                System.out.print(bolt.getNutSymbol(nutRow, colorizer));
+                sb.append(bolt.getNutSymbol(nutRow, colorizer));
             }
-            System.out.println();
+            sb.append("\n");  // required to maintain vertical structure
         }
+
+        // Add bolt indices
         for (int i = 0; i < bolts.size(); i++) {
-            System.out.printf(" %d ", i);
+            sb.append(String.format(" %d ", i));
         }
-        System.out.println();
+        sb.append("\n");
+
+        // Print the whole frame at once
+        System.out.print(sb.toString());
+        System.out.flush();
     }
 
 }
