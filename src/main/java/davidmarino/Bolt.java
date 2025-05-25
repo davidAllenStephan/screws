@@ -20,10 +20,13 @@ public class Bolt {
         for (int i = 0; i < length; i++) { // Add null for the length of the bolt
             this.nuts.add(null);
         }
-        for (int i = 0; i < nnuts.length; i++) { // Add the initial nuts to the ArrayList
-            this.nuts.set(i + nnuts.length, new Nut(nnuts[i]));
+        if (nnuts.length != 0) {
+            int i = length - 1;
+            while (i >= 0) {
+                this.nuts.set(i, new Nut(nnuts[i]));
+                i--;
+            }
         }
-
         this.length = length; // Set the length of the bolt
     }
 
@@ -89,8 +92,6 @@ public class Bolt {
     public boolean isSameColor(Bolt nbolt) {
         int nTopIndex = nbolt.findTopNutIndex();
         int topIndex = this.findTopNutIndex();
-        System.out.println("nTopIndex: " + nTopIndex);
-        System.out.println("topIndex: " + topIndex);
         if (nTopIndex == -1) {
             return true;
         } else if (topIndex == -1) {
@@ -98,8 +99,6 @@ public class Bolt {
         }
         int nBoltColor = nbolt.nuts.get(nTopIndex).getColor();
         int boltColor = this.nuts.get(topIndex).getColor();
-        System.out.println("nBoltColor: " + nBoltColor);
-        System.out.println("boltColor: " + boltColor);
         return nBoltColor == boltColor;
         // This is returning true should be false
     }

@@ -3,8 +3,8 @@ package davidmarino;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        int[][] nboard = {{2,6},{0,6},{0,1}, {}, {}};
-        Board board = new Board(nboard,4);
+        // int[][] nboard = {{2,6},{0,6},{0,1}, {}, {}};
+        Board board = new Board(8,5);
         board.print();
         while (true) {
             int[] control = Input.input();
