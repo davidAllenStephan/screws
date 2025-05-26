@@ -9,12 +9,12 @@ package davidmarino;
  * Load levels
  * Test different bolt size
  * Seperate nDistinctNut from nBolt
- *
+ * User keymap
  */
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board(2,3);
+        Board board = new Board(2,3, 10);
         board.print();
         long startTime = System.nanoTime();
         while (true) {

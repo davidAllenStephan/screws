@@ -35,7 +35,7 @@ public class Board {
         return array;
     }
 
-    public Board(int nDistinctNut, int maxBoltLength) {
+    public Board(int nDistinctNut, int maxBoltLength, int nBolts) {
         this.bolts = new ArrayList<>();
         int[][] bar = new int[nDistinctNut][maxBoltLength];
         for (int i = 0; i < nDistinctNut; i++) { // Iterate through nDistinctNut nut color
@@ -44,16 +44,16 @@ public class Board {
             bar[i] = nuts;
         }
         int[][] foo = shuffle(bar);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 2; i++) {
             foo = shuffle(foo);
         }
         for (int i = 0; i < nDistinctNut; i++) {
             this.bolts.add(new Bolt(foo[i], maxBoltLength));
         }
-        // Create empty bolts
         int[] empty = new int[0];
-        this.bolts.add(new Bolt(empty, maxBoltLength));
-        this.bolts.add(new Bolt(empty, maxBoltLength));
+        for (int i = 0; i < Math.abs(nDistinctNut - nBolts); i++) {
+            this.bolts.add(new Bolt(empty, maxBoltLength));
+        }
     }
 
 

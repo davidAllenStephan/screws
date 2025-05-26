@@ -29,6 +29,7 @@ public class AnsiColor {
             "\u001B[1;35;47m",   // Bright Magenta
             "\u001B[1;36;47m",   // Bright Cyan
     };
+
     private static final String RESET = "\u001B[0m";
 
     private Map<Integer, String> colorMap = new HashMap<>();
