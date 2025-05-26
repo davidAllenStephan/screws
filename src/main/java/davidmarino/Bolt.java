@@ -30,6 +30,20 @@ public class Bolt {
         this.length = length; // Set the length of the bolt
     }
 
+    public boolean isComplete() {
+        int count = 0;
+        int topNutIndex = findTopNutIndex();
+        if (topNutIndex == -1) {
+            return true;
+        }
+        for (int i = topNutIndex; i < nuts.size(); i++) {
+            if (nuts.get(topNutIndex).equals(nuts.get(i))) {
+                count++;
+            }
+        }
+        return count == nuts.size();
+    }
+
     private int findSpaceIndex() { // Find open space index
         int i = this.nuts.size() - 1;
         while (i >= 0) { // Iterates bottom to top returns first null index

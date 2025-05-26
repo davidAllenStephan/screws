@@ -9,13 +9,17 @@ import lombok.Data;
 
 @Data
 public class Nut {
-    private int color;
+    private int color = -1;
 
     public Nut(int color) {
         this.color = color;
     }
 
     public String render(AnsiColor colorizer) {
-        return colorizer.colorize(this.color, String.valueOf(this.color));
+        return colorizer.colorize(this.color, "\u2580");
+    }
+
+    public boolean equals(Nut o) {
+        return this.color == o.getColor();
     }
 }

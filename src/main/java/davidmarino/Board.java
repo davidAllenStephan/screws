@@ -55,6 +55,16 @@ public class Board {
         this.bolts.add(new Bolt(empty, length));
     }
 
+
+    public boolean isComplete() {
+        for (Bolt bolt : bolts) {
+            if (!bolt.isComplete()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void print() {
         AnsiColor colorizer = new AnsiColor();
         int maxHeight = 0;
@@ -63,27 +73,25 @@ public class Board {
         }
 
         StringBuilder sb = new StringBuilder();
-
-        // ANSI code to move cursor to top-left (home) and clear the screen
         sb.append("\u001b[H"); // Move cursor to home
         sb.append("\u001b[2J"); // Clear screen
 
-        // Build the board
+        // Print nut stacks row by row (top to bottom)
         for (int row = 0; row < maxHeight; row++) {
             for (Bolt bolt : bolts) {
                 int nutRow = bolt.getHeight() - maxHeight + row;
-                sb.append(bolt.getNutSymbol(nutRow, colorizer));
+                String symbol = bolt.getNutSymbol(nutRow, colorizer);
+                sb.append(String.format("%-1s", symbol)); // each cell is exactly 3 characters wide
             }
-            sb.append("\n");  // required to maintain vertical structure
+            sb.append("\n");
         }
 
-        // Add bolt indices
+        // Print aligned column indices below
         for (int i = 0; i < bolts.size(); i++) {
-            sb.append(String.format(" %d ", i));
+            sb.append(String.format(" %-2s", i)); // each index is 3 characters wide
         }
         sb.append("\n");
 
-        // Print the whole frame at once
         System.out.print(sb.toString());
         System.out.flush();
     }
