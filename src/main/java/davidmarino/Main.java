@@ -3,12 +3,16 @@ package davidmarino;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
-        // int[][] nboard = {{2,6},{0,6},{0,1}, {}, {}};
-        Board board = new Board(8,3);
+        Board board = new Board(6,10);
         board.print();
+        long startTime = System.nanoTime();
         while (true) {
             if (board.isComplete()) {
+                long endTime = System.nanoTime();
+                long elapsedTime = endTime - startTime;
+                double seconds = (double) elapsedTime / 1_000_000_000.0;
                 System.out.println("Completed!");
+                System.out.println(seconds);
             }
             int[] control = Input.input();
             if (control[0] == -1) {

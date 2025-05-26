@@ -26,10 +26,11 @@ public class Board {
     private int[][] shuffle(int[][] array) {
         Random random = new Random();
         for (int i = 0; i < array[0].length; i++) {
-            int index = random.nextInt(array.length);
+            int index = random.nextInt(array.length); // Get random distinct column
+            int index2 = random.nextInt(array.length); // Get random distinct column
             int temp = array[index][i];
-            array[index][i] = array[i][0];
-            array[i][0] = temp;
+            array[index][i] = array[index2][i];
+            array[index2][i] = temp;
         }
         return array;
     }
