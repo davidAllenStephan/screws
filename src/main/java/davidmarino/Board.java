@@ -14,46 +14,46 @@ import java.util.Random;
 @Data
 public class Board {
     private ArrayList<Bolt> bolts;
-
-    public Board(int[][] board, int length) {
-        if (board.length <= 0) throw new BoardException("N must be positive");
+    // Constructor, "board" refers to the grouping of bolts, board -> bolt -> nut
+    public Board(int[][] primitiveBoard, int maxBoltLength) {
         this.bolts = new ArrayList<>();
-        for (int i = 0; i < board.length; i++) {
-            this.bolts.add(new Bolt(board[i], length));
+        for (int i = 0; i < primitiveBoard.length; i++) { // 0 to number of bolts
+            this.bolts.add(new Bolt(primitiveBoard[i], maxBoltLength));
         }
     }
 
+    // Shuffles array by index
     private int[][] shuffle(int[][] array) {
-        Random random = new Random();
-        for (int i = 0; i < array[0].length; i++) {
-            int index = random.nextInt(array.length); // Get random distinct column
-            int index2 = random.nextInt(array.length); // Get random distinct column
-            int temp = array[index][i];
-            array[index][i] = array[index2][i];
-            array[index2][i] = temp;
+        Random random = new Random(); // Random
+        for (int i = 0; i < array[0].length; i++) { // 0 to the length of the first value
+            int randIndex = random.nextInt(array.length); // Get random nDistinctNut column
+            int randIndex2 = random.nextInt(array.length); // Get random nDistinctNut column
+            int temp = array[randIndex][i];
+            array[randIndex][i] = array[randIndex2][i];
+            array[randIndex2][i] = temp;
         }
         return array;
     }
 
-    public Board(int dis, int length) {
+    public Board(int nDistinctNut, int maxBoltLength) {
         this.bolts = new ArrayList<>();
-        int[][] bar = new int[dis][length];
-        for (int i = 0; i < dis; i++) { // Iterate through distinct nut color
-            int[] nuts = new int[length]; // Create empty int array size length
-            Arrays.fill(nuts, i); // Fill with distinct nut color
+        int[][] bar = new int[nDistinctNut][maxBoltLength];
+        for (int i = 0; i < nDistinctNut; i++) { // Iterate through nDistinctNut nut color
+            int[] nuts = new int[maxBoltLength]; // Create empty int array size length
+            Arrays.fill(nuts, i); // Fill with nDistinctNut nut color
             bar[i] = nuts;
         }
         int[][] foo = shuffle(bar);
         for (int i = 0; i < 100; i++) {
             foo = shuffle(foo);
         }
-        for (int i = 0; i < dis; i++) {
-            this.bolts.add(new Bolt(foo[i], length));
+        for (int i = 0; i < nDistinctNut; i++) {
+            this.bolts.add(new Bolt(foo[i], maxBoltLength));
         }
         // Create empty bolts
         int[] empty = new int[0];
-        this.bolts.add(new Bolt(empty, length));
-        this.bolts.add(new Bolt(empty, length));
+        this.bolts.add(new Bolt(empty, maxBoltLength));
+        this.bolts.add(new Bolt(empty, maxBoltLength));
     }
 
 
@@ -76,6 +76,13 @@ public class Board {
         StringBuilder sb = new StringBuilder();
         sb.append("\u001b[H"); // Move cursor to home
         sb.append("\u001b[2J"); // Clear screen
+        sb.append("░██████╗░█████╗░██████╗░███████╗░██╗░░░░░░░██╗░██████╗\n");
+        sb.append("██╔════╝██╔══██╗██╔══██╗██╔════╝░██║░░██╗░░██║██╔════╝\n");
+        sb.append("╚█████╗░██║░░╚═╝██████╔╝█████╗░░░╚██╗████╗██╔╝╚█████╗░\n");
+        sb.append("░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░░░████╔═████║░░╚═══██╗\n");
+        sb.append("██████╔╝╚█████╔╝██║░░██║███████╗░░╚██╔╝░╚██╔╝░██████╔╝\n");
+        sb.append("╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝░░░╚═╝░░░╚═╝░░╚═════╝░\n");
+        sb.append("\n\n\n");
 
         // Print nut stacks row by row (top to bottom)
         for (int row = 0; row < maxHeight; row++) {

@@ -45,4 +45,5 @@ public class AnsiColor {
     public String colorize(int nutValue, String symbol) {
         return COLORS[nutValue] + symbol + RESET;
     }
+
 }

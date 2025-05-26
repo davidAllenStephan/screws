@@ -12,22 +12,22 @@ import java.util.ArrayList;
 @Data
 public class Bolt {
     private ArrayList<Nut> nuts;
-    private int spaceIndex;
-    private int length;
+    private int maxBoltLength;
 
-    public Bolt(int[] nnuts, int length) {
-        this.nuts = new ArrayList<Nut>(); // Create an empty ArrayList
-        for (int i = 0; i < length; i++) { // Add null for the length of the bolt
+    public Bolt(int[] primitiveNuts, int maxBoltLength) {
+        this.nuts = new ArrayList<Nut>(); // init
+        this.maxBoltLength = maxBoltLength;
+
+        for (int i = 0; i < maxBoltLength; i++) { // fill null, 0 to the maximum length of the bolt
             this.nuts.add(null);
         }
-        if (nnuts.length != 0) {
-            int i = length - 1;
+        if (primitiveNuts.length != 0) { // number of nuts is not 0
+            int i = maxBoltLength - 1; // iterate from maximum size of the bolt to 0, moving upward from bottom visually
             while (i >= 0) {
-                this.nuts.set(i, new Nut(nnuts[i]));
+                this.nuts.set(i, new Nut(primitiveNuts[i])); // Add nut to bolt, visually stacking the nuts bottom to top
                 i--;
             }
         }
-        this.length = length; // Set the length of the bolt
     }
 
     public boolean isComplete() {
@@ -67,7 +67,7 @@ public class Bolt {
     }
 
     private boolean isFull() {
-        return findTopNutIndex() == this.length; // Top nut is same as bolt length
+        return findTopNutIndex() == this.maxBoltLength; // Top nut is same as bolt length
     }
 
     private boolean isEmpty() {
@@ -83,7 +83,6 @@ public class Bolt {
     }
 
     public ArrayList<Nut> remove() {
-        if (isEmpty()) throw new BoltException("Bolt is empty cannot remove");
         ArrayList<Nut> nnuts = new ArrayList<>();
         int topIndex = this.findTopNutIndex();
         nnuts.add(this.nuts.get(topIndex));
@@ -118,9 +117,6 @@ public class Bolt {
     }
 
     public Bolt shiftAway(Bolt nbolt) {
-        if (nbolt == null) throw new BoltException("Bolt null cannot shift");
-        if (nbolt.isFull()) throw new BoltException("NBolt is full cannot shift");
-        if (!this.isSameColor(nbolt)) throw new BoltException("Not the same color!");
         ArrayList<Nut> nnuts = this.remove();
         nbolt.addNutToTop(nnuts);
         return nbolt;
