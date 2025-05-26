@@ -5,6 +5,8 @@
 
 package davidmarino;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -14,8 +16,14 @@ public class Bolt {
     private ArrayList<Nut> nuts;
     private int maxBoltLength;
 
+    @JsonCreator
+    public Bolt(@JsonProperty("nuts") ArrayList<Nut> nuts, @JsonProperty("maxBoltLength") int maxBoltLength) {
+        this.nuts = nuts;
+        this.maxBoltLength = maxBoltLength;
+    }
+
     public Bolt(int[] primitiveNuts, int maxBoltLength) {
-        this.nuts = new ArrayList<Nut>(); // init
+        this.nuts = new ArrayList<>(); // init
         this.maxBoltLength = maxBoltLength;
 
         for (int i = 0; i < maxBoltLength; i++) { // fill null, 0 to the maximum length of the bolt
@@ -67,7 +75,7 @@ public class Bolt {
     }
 
     private boolean isFull() {
-        return findTopNutIndex() == this.maxBoltLength; // Top nut is same as bolt length
+        return findTopNutIndex() == maxBoltLength; // Top nut is same as bolt length
     }
 
     private boolean isEmpty() {
@@ -84,21 +92,24 @@ public class Bolt {
 
     public ArrayList<Nut> remove() {
         ArrayList<Nut> nnuts = new ArrayList<>();
-        int topIndex = this.findTopNutIndex();
-        nnuts.add(this.nuts.get(topIndex));
-        int i = topIndex+1;
-        while (i < this.nuts.size()) {
-            if (this.nuts.get(i) != null) {
-                if (nnuts.getFirst().getColor() == this.nuts.get(i).getColor()) {
-                    nnuts.addFirst(this.nuts.get(i));
-                    this.nuts.set(i, null);
-                } else {
-                    break;
+        if (!isEmpty()) {
+            int topIndex = this.findTopNutIndex();
+            nnuts.add(this.nuts.get(topIndex));
+            int i = topIndex+1;
+            while (i < this.nuts.size()) {
+                if (this.nuts.get(i) != null) {
+                    if (nnuts.getFirst().getColor().equals(this.nuts.get(i).getColor())) {
+                        nnuts.addFirst(this.nuts.get(i));
+                        this.nuts.set(i, null);
+                    } else {
+                        break;
+                    }
                 }
+                i++;
             }
-            i++;
+            this.nuts.set(topIndex, null);
+            return nnuts;
         }
-        this.nuts.set(topIndex, null);
         return nnuts;
     }
 
@@ -110,15 +121,18 @@ public class Bolt {
         } else if (topIndex == -1) {
             return false;
         }
-        int nBoltColor = nbolt.nuts.get(nTopIndex).getColor();
-        int boltColor = this.nuts.get(topIndex).getColor();
+        int nBoltColor = Integer.parseInt(nbolt.nuts.get(nTopIndex).getColor());
+        int boltColor = Integer.parseInt(this.nuts.get(topIndex).getColor());
         return nBoltColor == boltColor;
         // This is returning true should be false
     }
 
     public Bolt shiftAway(Bolt nbolt) {
-        ArrayList<Nut> nnuts = this.remove();
-        nbolt.addNutToTop(nnuts);
+        if (this.isSameColor(nbolt) && !nbolt.isFull()) {
+            ArrayList<Nut> nnuts = this.remove();
+            nbolt.addNutToTop(nnuts);
+            return nbolt;
+        }
         return nbolt;
     }
 

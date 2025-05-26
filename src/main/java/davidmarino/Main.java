@@ -8,13 +8,21 @@ package davidmarino;
  * Save levels
  * Load levels
  * Test different bolt size
- * Seperate nDistinctNut from nBolt
  * User keymap
  */
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board(2,3, 10);
+        ReadJson readJson = new ReadJson();
+        readJson.readJson();
+        int nBolts = 3;
+        int nDistinctNut = 1;
+        int maxBoltLength = 3;
+        int[] boltHeightMap = new int[nBolts];
+        for (int i = 0; i < nBolts; i++) {
+            boltHeightMap[i] = i;
+        }
+        Board board = new Board(nDistinctNut,maxBoltLength, nBolts);
         board.print();
         long startTime = System.nanoTime();
         while (true) {
