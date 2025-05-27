@@ -40,7 +40,7 @@ public class BoltService {
         for (int i = topNutIndex; i < bolt.getNuts().size(); i++) {
             if (reference.equals(bolt.getNuts().get(i))) count++;
         }
-        return count == bolt.getNuts().size();
+        return count == bolt.getNuts().size() - topNutIndex;
     }
 
     public ArrayList<Nut> remove(Bolt bolt) {

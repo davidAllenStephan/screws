@@ -6,6 +6,7 @@ import davidmarino.service.BoardService;
 import davidmarino.service.BoltService;
 import davidmarino.utility.Input;
 import davidmarino.utility.ReadJson;
+import davidmarino.utility.StopWatch;
 
 /**
  * TODO:
@@ -22,14 +23,13 @@ public class Main {
         Board board = readJson.readJson();
         BoardService boardService = new BoardService(new BoltService());
         boardService.print(board);
-        long startTime = System.nanoTime();
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         while (true) {
             if (boardService.isComplete(board)) {
-                long endTime = System.nanoTime();
-                long elapsedTime = endTime - startTime;
-                double seconds = (double) elapsedTime / 1_000_000_000.0;
+                stopWatch.stop();
                 System.out.println("Completed!");
-                System.out.println(seconds);
+                System.out.println(stopWatch.seconds());
             }
             int[] control = Input.input();
             if (control[0] == -1) {
