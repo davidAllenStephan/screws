@@ -10,15 +10,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Data
 public class Bolt {
     private ArrayList<Nut> nuts;
     private int maxBoltLength;
+    private int maxNuts;
 
     @JsonCreator
     public Bolt(@JsonProperty("nuts") ArrayList<Nut> nuts, @JsonProperty("maxBoltLength") int maxBoltLength) {
         this.nuts = nuts;
+        this.maxNuts = nuts.size();
         for (int i = nuts.size(); i < maxBoltLength; i++) {
             this.nuts.addFirst(null);
         }
@@ -42,6 +47,7 @@ public class Bolt {
     }
 
     public boolean isComplete() {
+        // Is complete if either the bolt is empty or is full
         int count = 0;
         int topNutIndex = findTopNutIndex();
         if (topNutIndex == -1) {
@@ -56,65 +62,40 @@ public class Bolt {
     }
 
     private int findSpaceIndex() { // Find open space index
-        int i = this.nuts.size() - 1;
-        while (i >= 0) { // Iterates bottom to top returns first null index
-            if (this.nuts.get(i) == null) {
-                return i;
-            }
-            i--;
-        }
-        return -1;
+        return (int) this.nuts.stream()
+                .filter(Objects::isNull)
+                .count() - 1;
     }
 
     private int findTopNutIndex() { // Find top nut index
-        int i = 0;
-        while (i < this.nuts.size()) {
-            if (this.nuts.get(i) != null) {
-                return i;
-            }
-            i++;
-        }
-        return -1;
+        int topNutIndex = (this.nuts.size()) - (int) this.nuts.stream()
+                .filter(Objects::nonNull)
+                .count();
+        return (topNutIndex == this.nuts.size()) ? -1 : topNutIndex;
     }
 
     private boolean isFull() {
-        return findTopNutIndex() == maxBoltLength; // Top nut is same as bolt length
+        return ((int)this.nuts.stream().filter(Objects::nonNull).count() == this.maxBoltLength);
     }
 
     private boolean isEmpty() {
-        return findTopNutIndex() == -1; // No top nut is found
+        return (this.nuts.stream().filter(Objects::isNull).count() == this.maxBoltLength);
     }
 
-    public Bolt addNutToTop(ArrayList<Nut> nuts) { // Add nut to top of bolt
-        System.out.println(nuts);
-        for (Nut nut: nuts) { // For every nut in nuts
-            int i = this.findSpaceIndex(); // Find the first open space
-            this.nuts.set(i, nut); // Set open space to new nut
-        }
-        return this;
+    public void addNutToTop(ArrayList<Nut> nuts) { // Add nut to top of bolt
+        nuts.forEach(nut -> this.nuts.set(this.findSpaceIndex(), nut));
     }
 
     public ArrayList<Nut> remove() {
-        ArrayList<Nut> nnuts = new ArrayList<>();
-        if (!isEmpty()) {
-            int topIndex = this.findTopNutIndex();
-            nnuts.add(this.nuts.get(topIndex));
-            int i = topIndex+1;
-            while (i < this.nuts.size()) {
-                if (this.nuts.get(i) != null) {
-                    if (nnuts.getFirst().getValue() == this.nuts.get(i).getValue()) {
-                        nnuts.addFirst(this.nuts.get(i));
-                        this.nuts.set(i, null);
-                    } else {
-                        break;
-                    }
-                }
-                i++;
+        if (isEmpty()) return new ArrayList<>();
+        Nut topNut = this.nuts.get(findTopNutIndex());
+        return this.nuts.stream().filter(Objects::nonNull).map(nut -> {
+            if (nut.equals(topNut)) {
+                this.nuts.set(findTopNutIndex(), null);
+                return nut;
             }
-            this.nuts.set(topIndex, null);
-            return nnuts;
-        }
-        return nnuts;
+            return null;
+        }).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public boolean isSameColor(Bolt nbolt) {

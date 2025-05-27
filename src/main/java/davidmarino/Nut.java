@@ -16,7 +16,7 @@ public class Nut {
     private String type;
 
     @JsonCreator
-    public Nut (@JsonProperty("value") int value, @JsonProperty("color") String color, @JsonProperty("type") String type) {
+    public Nut(@JsonProperty("value") int value, @JsonProperty("color") String color, @JsonProperty("type") String type) {
         this.value = value;
         this.color = color;
         this.type = type;
