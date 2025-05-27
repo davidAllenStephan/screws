@@ -3,10 +3,7 @@
  * Date: 5/18/25
  */
 
-package davidmarino;
-
-import java.util.HashMap;
-import java.util.Map;
+package davidmarino.utility;
 
 public class AnsiColor {
     private static final String[] COLORS = {
@@ -31,17 +28,6 @@ public class AnsiColor {
     };
 
     private static final String RESET = "\u001B[0m";
-
-    private Map<Integer, String> colorMap = new HashMap<>();
-    private int nextColorIndex = 0;
-
-    public String getColorForNut(int nutValue) {
-        return colorMap.computeIfAbsent(nutValue, val -> {
-            String color = COLORS[nextColorIndex % COLORS.length];
-            nextColorIndex++;
-            return color;
-        });
-    }
 
     public String colorize(int nutValue, String symbol) {
         return COLORS[nutValue] + symbol + RESET;

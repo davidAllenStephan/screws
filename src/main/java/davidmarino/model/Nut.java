@@ -3,10 +3,11 @@
  * Date: 5/18/25
  */
 
-package davidmarino;
+package davidmarino.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import davidmarino.utility.AnsiColor;
 import lombok.Data;
 
 @Data
@@ -22,8 +23,10 @@ public class Nut {
         this.type = type;
     }
 
-    public Nut(int value) {
-        this.value = value;
+    public Nut(Nut nut) {
+        this.value = nut.value;
+        this.color = nut.color;
+        this.type = nut.type;
     }
 
     public String render(AnsiColor colorizer) {

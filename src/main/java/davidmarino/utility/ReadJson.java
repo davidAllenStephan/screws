@@ -3,9 +3,10 @@
  * Date: 5/26/25
  */
 
-package davidmarino;
+package davidmarino.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import davidmarino.model.Board;
 
 import java.io.File;
 import java.io.IOException;
