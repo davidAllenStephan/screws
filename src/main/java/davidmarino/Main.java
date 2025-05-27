@@ -8,13 +8,13 @@ package davidmarino;
  * Save levels
  * Load levels
  * Test different bolt size
- * Seperate nDistinctNut from nBolt
  * User keymap
  */
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board(2,3, 10);
+        ReadJson readJson = new ReadJson();
+        Board board = readJson.readJson();
         board.print();
         long startTime = System.nanoTime();
         while (true) {

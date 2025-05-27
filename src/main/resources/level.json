@@ -1,0 +1,45 @@
+{
+  "nBolts": 10,
+  "nDistinctNut": 3,
+  "extraBolts": 2,
+  "bolts": [
+    {
+      "maxBoltLength": 3,
+      "nuts": [
+        {
+          "value": 0,
+          "color": "red",
+          "type": "normal"
+        },
+        {
+          "value": 1,
+          "color": "blue",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "maxBoltLength": 3,
+      "nuts": [
+        {
+          "value": 0,
+          "color": "blue",
+          "type": "normal"
+        },
+        {
+          "value": 1,
+          "color": "red",
+          "type": "normal"
+        }
+      ]
+    },
+    {
+      "maxBoltLength": 3,
+      "nuts": []
+    },
+    {
+      "maxBoltLength": 3,
+      "nuts": []
+    }
+  ]
+}
