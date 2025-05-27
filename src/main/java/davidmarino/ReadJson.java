@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class ReadJson {
-    public static void readJson() {
+    public static Board readJson() {
         ObjectMapper mapper = new ObjectMapper();
         Board data;
         try {
@@ -19,6 +19,6 @@ public class ReadJson {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(data);
+        return data;
     }
 }

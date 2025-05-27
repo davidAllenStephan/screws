@@ -14,15 +14,7 @@ package davidmarino;
 public class Main {
     public static void main(String[] args) {
         ReadJson readJson = new ReadJson();
-        readJson.readJson();
-        int nBolts = 3;
-        int nDistinctNut = 1;
-        int maxBoltLength = 3;
-        int[] boltHeightMap = new int[nBolts];
-        for (int i = 0; i < nBolts; i++) {
-            boltHeightMap[i] = i;
-        }
-        Board board = new Board(nDistinctNut,maxBoltLength, nBolts);
+        Board board = readJson.readJson();
         board.print();
         long startTime = System.nanoTime();
         while (true) {

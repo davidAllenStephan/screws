@@ -19,6 +19,9 @@ public class Bolt {
     @JsonCreator
     public Bolt(@JsonProperty("nuts") ArrayList<Nut> nuts, @JsonProperty("maxBoltLength") int maxBoltLength) {
         this.nuts = nuts;
+        for (int i = nuts.size(); i < maxBoltLength; i++) {
+            this.nuts.addFirst(null);
+        }
         this.maxBoltLength = maxBoltLength;
     }
 
@@ -83,6 +86,7 @@ public class Bolt {
     }
 
     public Bolt addNutToTop(ArrayList<Nut> nuts) { // Add nut to top of bolt
+        System.out.println(nuts);
         for (Nut nut: nuts) { // For every nut in nuts
             int i = this.findSpaceIndex(); // Find the first open space
             this.nuts.set(i, nut); // Set open space to new nut
@@ -98,7 +102,7 @@ public class Bolt {
             int i = topIndex+1;
             while (i < this.nuts.size()) {
                 if (this.nuts.get(i) != null) {
-                    if (nnuts.getFirst().getColor().equals(this.nuts.get(i).getColor())) {
+                    if (nnuts.getFirst().getValue() == this.nuts.get(i).getValue()) {
                         nnuts.addFirst(this.nuts.get(i));
                         this.nuts.set(i, null);
                     } else {
@@ -121,8 +125,8 @@ public class Bolt {
         } else if (topIndex == -1) {
             return false;
         }
-        int nBoltColor = Integer.parseInt(nbolt.nuts.get(nTopIndex).getColor());
-        int boltColor = Integer.parseInt(this.nuts.get(topIndex).getColor());
+        int nBoltColor = nbolt.nuts.get(nTopIndex).getValue();
+        int boltColor = this.nuts.get(topIndex).getValue();
         return nBoltColor == boltColor;
         // This is returning true should be false
     }
