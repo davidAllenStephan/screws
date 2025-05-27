@@ -7,7 +7,7 @@
       "maxBoltLength": 3,
       "nuts": [
         {
-          "value": 0,
+          "value": 4,
           "color": "red",
           "type": "normal"
         },

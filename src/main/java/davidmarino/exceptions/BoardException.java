@@ -3,7 +3,7 @@
  * Date: 5/18/25
  */
 
-package davidmarino;
+package davidmarino.exceptions;
 
 public class BoardException extends RuntimeException {
     public BoardException(String message) {
