@@ -15,3 +15,17 @@ Simple interface for playing popular nuts and bolts color matching puzzle game.
 
 ## License
 This project is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php)
+
+## System Architecture
+![alt text](screwsdiagram.drawio.png)
+
+
+## TODO
+* Create custom script for levels
+* Design system architecture
+* Create API
+* Implement leaderboard
+* Save level to server
+* Load level from server
+* Menu for managing levels
+* Upgrade visuals

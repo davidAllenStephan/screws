@@ -1,20 +1,11 @@
 package davidmarino.gameplay;
 
-
 import davidmarino.AccessFile;
 import davidmarino.gameplay.model.Board;
 import davidmarino.gameplay.service.BoardService;
 import davidmarino.gameplay.service.BoltService;
 import davidmarino.gameplay.utility.GameplayInput;
 import davidmarino.gameplay.utility.StopWatch;
-
-/**
- * TODO:
- * Add a leaderboard
- * Save levels
- * Load levels
- * User keymap
- */
 
 public class Main {
     public static void main(String[] args) {
