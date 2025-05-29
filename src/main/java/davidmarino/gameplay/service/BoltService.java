@@ -3,11 +3,11 @@
  * Date: 5/27/25
  */
 
-package davidmarino.service;
+package davidmarino.gameplay.service;
 
-import davidmarino.model.Bolt;
-import davidmarino.model.Nut;
-import davidmarino.utility.AnsiColor;
+import davidmarino.gameplay.model.Bolt;
+import davidmarino.gameplay.model.Nut;
+import davidmarino.gameplay.utility.AnsiColor;
 
 import java.util.ArrayList;
 import java.util.Objects;

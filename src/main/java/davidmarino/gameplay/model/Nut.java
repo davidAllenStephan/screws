@@ -3,11 +3,11 @@
  * Date: 5/18/25
  */
 
-package davidmarino.model;
+package davidmarino.gameplay.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import davidmarino.utility.AnsiColor;
+import davidmarino.gameplay.utility.AnsiColor;
 import lombok.Data;
 
 @Data

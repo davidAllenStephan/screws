@@ -3,7 +3,7 @@
  * Date: 5/27/25
  */
 
-package davidmarino.utility;
+package davidmarino.gameplay.utility;
 
 public class StopWatch {
     private long startTime;

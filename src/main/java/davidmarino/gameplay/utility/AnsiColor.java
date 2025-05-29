@@ -3,7 +3,7 @@
  * Date: 5/18/25
  */
 
-package davidmarino.utility;
+package davidmarino.gameplay.utility;
 
 public class AnsiColor {
     private static final String[] COLORS = {

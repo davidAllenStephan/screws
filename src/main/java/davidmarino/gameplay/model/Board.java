@@ -3,7 +3,7 @@
  * Date: 5/18/25
  */
 
-package davidmarino.model;
+package davidmarino.gameplay.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
