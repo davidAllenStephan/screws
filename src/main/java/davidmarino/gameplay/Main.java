@@ -18,8 +18,8 @@ import davidmarino.gameplay.utility.StopWatch;
 
 public class Main {
     public static void main(String[] args) {
-        AccessFile<Board> readJson = new AccessFile<>(Board.class);
-        Board board = readJson.readJson("");
+        AccessFile<Board> accessJson= new AccessFile<>(Board.class);
+        Board board = accessJson.readJson("src/main/resources/test.json");
         BoardService boardService = new BoardService(new BoltService());
         boardService.print(board);
         StopWatch stopWatch = new StopWatch();

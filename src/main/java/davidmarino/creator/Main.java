@@ -5,13 +5,9 @@
 
 package davidmarino.creator;
 
-import davidmarino.AccessFile;
-import davidmarino.gameplay.utility.GameplayInput;
-
 public class Main {
     public static void main(String[] args) {
-        BoardCreator boardCreator = new BoardCreator(5, 5);
-        AccessFile<BoardCreator> a = new AccessFile<>(BoardCreator.class);
+        BoardTemplate boardCreator = new BoardTemplate(5, 5);
         boardCreator.printBoard();
         while (true) {
             int[] input = CreatorInput.input();
@@ -22,9 +18,10 @@ public class Main {
             } else if (input[0] == -4) {
                 boardCreator.updateHeight(input[1]);
             } else if (input[0] == -5) {
-                a.writeJson("test.json", boardCreator);
+                boardCreator.save();
+                break;
             } else {
-                boardCreator.updateNode(input[0], input[1], input[2]);
+                boardCreator.updateBoardTemplate(input[0], input[1], input[2]);
             }
             boardCreator.printBoard();
 

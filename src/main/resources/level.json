@@ -1,7 +1,4 @@
 {
-  "nBolts": 10,
-  "nDistinctNut": 3,
-  "extraBolts": 2,
   "bolts": [
     {
       "maxBoltLength": 3,

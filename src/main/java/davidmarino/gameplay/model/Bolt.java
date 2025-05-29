@@ -20,10 +20,10 @@ public class Bolt {
     @JsonCreator
     public Bolt(@JsonProperty("nuts") ArrayList<Nut> nuts, @JsonProperty("maxBoltLength") int maxBoltLength) {
         this.nuts = nuts;
-        this.maxNuts = nuts.size();
         for (int i = nuts.size(); i < maxBoltLength; i++) {
-            this.nuts.addFirst(null);
+            nuts.addFirst(null);
         }
+        this.maxNuts = nuts.size();
         this.maxBoltLength = maxBoltLength;
     }
 

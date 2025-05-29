@@ -15,17 +15,11 @@ import java.util.ArrayList;
 public class Board {
 
     private ArrayList<Bolt> bolts;
-    private int nBolts;
-    private int extraBolts;
-    private int nDistinctNut;
     private ArrayList<ArrayList<Bolt>> boltHistory;
 
     @JsonCreator
-    public Board(@JsonProperty("bolts") ArrayList<Bolt> bolts, @JsonProperty("nBolts") int nBolts, @JsonProperty("extraBolts") int extraBolts, @JsonProperty("nDistinctNut") int nDistinctNut) {
+    public Board(@JsonProperty("bolts") ArrayList<Bolt> bolts) {
         this.bolts = bolts;
-        this.nBolts = nBolts;
-        this.extraBolts = extraBolts;
-        this.nDistinctNut = nDistinctNut;
         this.boltHistory = new ArrayList<>();
     }
 
