@@ -1,0 +1,78 @@
+{
+  "bolts" : [ {
+    "maxBoltLength" : 5,
+    "nuts" : [ {
+      "value" : 4,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 5,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    } ]
+  }, {
+    "maxBoltLength" : 5,
+    "nuts" : [ {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 3,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 4,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 4,
+      "color" : null,
+      "type" : null
+    } ]
+  }, {
+    "maxBoltLength" : 5,
+    "nuts" : [ {
+      "value" : 3,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 5,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 5,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 3,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    } ]
+  }, {
+    "maxBoltLength" : 5,
+    "nuts" : [ ]
+  }, {
+    "maxBoltLength" : 5,
+    "nuts" : [ ]
+  } ]
+}
