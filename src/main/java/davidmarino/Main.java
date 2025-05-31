@@ -3,7 +3,7 @@
  * Date: 5/31/25
  */
 
-package davidmarino.davidmarinomenu;
+package davidmarino;
 
 import static davidmarino.davidmarinomenu.Menu.showMainMenu;
 

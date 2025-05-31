@@ -4,6 +4,7 @@
  */
 
 package davidmarino.davidmarinomenu;
+import davidmarino.davidmarinogameplay.Main;
 import lombok.Data;
 
 import java.util.Scanner;
@@ -60,21 +61,33 @@ public class Menu {
         System.out.print("\nChoose an option: ");
         String input = scanner.nextLine();
         if ("3".equals(input)) return;
+        if ("1".equals(input)) startGame();
         System.out.println("Option " + input + " selected. Press Enter to return...");
         scanner.nextLine();
+    }
+
+    private static void startGame() {
+        System.out.println("=== START GAME ===");
+        Main.startGame();
     }
 
     private static void showCreationMenu() {
         clearScreen();
         System.out.println("=== CREATION MENU ===");
-        System.out.println("1. New Character");
-        System.out.println("2. Edit Character");
+        System.out.println("1. New Level");
+        System.out.println("2. Edit Level");
         System.out.println("3. Back");
         System.out.print("\nChoose an option: ");
         String input = scanner.nextLine();
         if ("3".equals(input)) return;
+        if ("1".equals(input)) startCreation();
         System.out.println("Option " + input + " selected. Press Enter to return...");
         scanner.nextLine();
+    }
+
+    private static void startCreation() {
+        System.out.println("=== CREATION MENU ===");
+        davidmarino.davidmarinocreator.Main.start();
     }
 
     private static void showSettingsMenu() {
