@@ -17,6 +17,9 @@
               <version>1.18.38</version>
             </path>
           </annotationProcessorPaths>
+          <source>21</source>
+          <target>21</target>
+          <outputDirectory>./out</outputDirectory>
         </configuration>
       </plugin>
       <plugin>
@@ -34,6 +37,7 @@
                   <mainClass>${main.class}</mainClass>
                 </transformer>
               </transformers>
+              <outputDirectory>./out</outputDirectory>
             </configuration>
           </execution>
         </executions>
