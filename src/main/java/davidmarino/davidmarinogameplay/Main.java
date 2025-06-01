@@ -8,7 +8,7 @@ import davidmarino.davidmarinogameplay.utility.GameplayInput;
 import davidmarino.davidmarinogameplay.utility.StopWatch;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void startGame() {
         AccessFile<Board> accessJson= new AccessFile<>(Board.class);
         Board board = accessJson.readJson("src/main/resources/test.json");
         BoardService boardService = new BoardService(new BoltService());

@@ -7,7 +7,7 @@ package davidmarino.davidmarinocreator;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void start() {
         BoardTemplate boardCreator = new BoardTemplate(5, 5);
         boardCreator.printBoard();
         while (true) {

@@ -5,7 +5,7 @@
 
 package davidmarino.davidmarinocreator;
 
-import davidmarinocreator.util.Input;
+import davidmarino.davidmarinocreator.util.Input;
 
 public class CreatorInput extends Input {
     public static int[] input() {

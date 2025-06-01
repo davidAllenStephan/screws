@@ -16,10 +16,12 @@ public class Bolt {
     private ArrayList<Nut> nuts;
     private int maxBoltLength;
     private int maxNuts;
+    private boolean empty;
 
     @JsonCreator
-    public Bolt(@JsonProperty("nuts") ArrayList<Nut> nuts, @JsonProperty("maxBoltLength") int maxBoltLength) {
+    public Bolt(@JsonProperty("nuts") ArrayList<Nut> nuts, @JsonProperty("maxBoltLength") int maxBoltLength, @JsonProperty("empty") boolean empty) {
         this.nuts = nuts;
+        this.empty = empty;
         for (int i = nuts.size(); i < maxBoltLength; i++) {
             nuts.addFirst(null);
         }

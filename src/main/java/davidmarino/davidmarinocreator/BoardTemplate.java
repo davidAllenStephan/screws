@@ -11,7 +11,9 @@ import davidmarinocreator.util.AccessFile;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -94,19 +96,39 @@ public class BoardTemplate {
         a.writeJson("src/main/resources/test.json", this);
     }
 
-
     public void fill() {
-        Random rand = new Random();
+        ArrayList<ArrayList<Integer>> foo = new ArrayList<>();
+        for (int j = 0; j < this.height; j++) {
+            for (int i = 0; i < this.width - 2; i++) {
+                ArrayList<Integer> bar = new ArrayList<>();
+                bar.add(i + 1);
+                foo.add(bar);
+            }
+        }
+        Random random = new Random();
+        int fullStackLength = this.width - 2;
+        Set<Integer> visited = new HashSet<>();
+        while (foo.get(this.width-3).size() != this.height) {
+            for (int i = 0; i < fullStackLength; i++) {
+                int ran = random.nextInt(this.width-2, foo.size());
+                boolean valid = !visited.contains(ran) && foo.get(ran).getFirst() != 0;
+                while (!valid) {
+                    ran = random.nextInt(this.width-2, foo.size());
+                    valid = !visited.contains(ran) && foo.get(ran).getFirst() != 0;
+                }
+                visited.add(ran);
+                foo.get(i).add(foo.get(ran).getFirst());
+            }
+        }
+
         for (int i = 0; i < this.width - 2; i++) {
-            this.bolts.get(i).fill(this.height-1);
+            this.bolts.get(i);
+            for (int j = 0; j < this.height; j++) {
+                this.bolts.get(i).getNuts().set(j, new NutTemplate(foo.get(i).get(j)));
+            }
         }
-        for (int i = 0; i < this.height; i++) {
-            int a = rand.nextInt(this.width-2);
-            int b = 0;
-            NutTemplate nuta = this.bolts.get(a).getNuts().get(i);
-            this.bolts.get(a).getNuts().set(i, this.bolts.get(b).getNuts().get(i));
-            this.bolts.get(b).getNuts().set(i, nuta);
-        }
+        System.out.println(this.bolts);
+
     }
 
     public void randomize(int width, int height) {
@@ -115,6 +137,5 @@ public class BoardTemplate {
         resetBoard();
         fill();
     }
-
 
 }

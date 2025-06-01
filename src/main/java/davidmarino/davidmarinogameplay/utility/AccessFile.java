@@ -26,14 +26,5 @@ public class AccessFile<T> {
             throw new RuntimeException("Failed to read JSON from file: " + path, e);
         }
     }
-
-    public void writeJson(String path, T data) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), data);
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to write JSON to file: " + path, e);
-        }
-    }
 }
 

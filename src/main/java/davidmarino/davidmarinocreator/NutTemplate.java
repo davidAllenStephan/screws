@@ -13,12 +13,8 @@ public class NutTemplate {
     private String color;
     private String type;
 
-    public NutTemplate() {}
-
-    public NutTemplate(int value, String color, String type) {
-        this.value = value;
-        this.color = color;
-        this.type = type;
+    public NutTemplate() {
+        this.value = 0;
     }
 
     public NutTemplate(int value) {
