@@ -39,16 +39,28 @@ public class BoltTemplate {
         }
     }
 
-    public void fill(int height) {
-        for (int i = height; i >= 0; i--) {
-            this.nuts.set(i, new NutTemplate(i + 1));
+    public int peekTopColor() {
+        for (int i = 0; i < nuts.size(); i++) {
+            int color = nuts.get(i).getValue();
+            if (color != 0) {
+                return color;
+            }
         }
-        Random rand = new Random();
-        for (int i = height; i >= 0; i--) {
-            int randomIndex = rand.nextInt(height);
-            NutTemplate temp = nuts.get(randomIndex);
-            this.nuts.set(randomIndex, this.nuts.get(i));
-            this.nuts.set(i, temp);
+        return 0;
+    }
+
+   public boolean isEmpty() {
+        for (int i = 0; i < nuts.size(); i++) {
+            if (nuts.get(i).getValue() != 0) {
+                return false;
+            }
+        }
+        return true;
+   }
+
+    public void fill(int height, int color) {
+        for (int i = height-1; i >= 0; i--) {
+            this.nuts.set(i, new NutTemplate(color));
         }
     }
 

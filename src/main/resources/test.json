@@ -1,12 +1,8 @@
 {
   "bolts" : [ {
-    "maxBoltLength" : 4,
+    "maxBoltLength" : 5,
     "nuts" : [ {
-      "value" : 2,
-      "color" : null,
-      "type" : null
-    }, {
-      "value" : 4,
+      "value" : 1,
       "color" : null,
       "type" : null
     }, {
@@ -14,18 +10,51 @@
       "color" : null,
       "type" : null
     }, {
-      "value" : 2,
+      "value" : 3,
       "color" : null,
       "type" : null
-    } ]
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    } ],
+    "empty" : false
   }, {
-    "maxBoltLength" : 4,
+    "maxBoltLength" : 5,
     "nuts" : [ {
-      "value" : 1,
+      "value" : 2,
       "color" : null,
       "type" : null
     }, {
-      "value" : 4,
+      "value" : 3,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    } ],
+    "empty" : false
+  }, {
+    "maxBoltLength" : 5,
+    "nuts" : [ {
+      "value" : 3,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
       "color" : null,
       "type" : null
     }, {
@@ -36,12 +65,19 @@
       "value" : 3,
       "color" : null,
       "type" : null
-    } ]
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    } ],
+    "empty" : false
   }, {
-    "maxBoltLength" : 4,
-    "nuts" : [ ]
+    "maxBoltLength" : 5,
+    "nuts" : [ ],
+    "empty" : true
   }, {
-    "maxBoltLength" : 4,
-    "nuts" : [ ]
+    "maxBoltLength" : 5,
+    "nuts" : [ ],
+    "empty" : true
   } ]
 }
