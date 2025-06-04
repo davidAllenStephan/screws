@@ -6,6 +6,8 @@
 package davidmarino.davidmarinocreator;
 
 
+import davidmarino.davidmarinocreator.util.Input;
+
 public class Main {
     public static void start() {
         BoardTemplate boardCreator = new BoardTemplate(5, 5);
@@ -23,7 +25,9 @@ public class Main {
                     boardCreator.updateHeight(input[1]);
                 }
                 case -5 -> {
-                    boardCreator.save();
+                    String[] s = Input.get();
+                    String res = String.join("", s);
+                    boardCreator.save(res);
                     return;
                 }
                 case -6 -> {

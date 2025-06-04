@@ -13,12 +13,13 @@ import java.util.ArrayList;
 
 @Data
 public class Board {
-
+    private String game_id;
     private ArrayList<Bolt> bolts;
     private ArrayList<ArrayList<Bolt>> boltHistory;
 
     @JsonCreator
-    public Board(@JsonProperty("bolts") ArrayList<Bolt> bolts) {
+    public Board(@JsonProperty("game_id") String game_id, @JsonProperty("bolts") ArrayList<Bolt> bolts) {
+        this.game_id = game_id;
         this.bolts = bolts;
         this.boltHistory = new ArrayList<>();
     }

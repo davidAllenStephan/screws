@@ -10,14 +10,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import davidmarinocreator.util.AccessFile;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Data
 public class BoardTemplate {
+    private String game_id;
     private ArrayList<BoltTemplate> bolts;
     @JsonIgnore
     private int width;
@@ -82,9 +80,9 @@ public class BoardTemplate {
             System.out.flush();
     }
 
-    public void save() {
+    public void save(String fileName) {
         AccessFile<BoardTemplate> a = new AccessFile<>(BoardTemplate.class);
-
+        this.game_id = UUID.randomUUID().toString();
         this.bolts = this.bolts.stream()
                 .map(bolt -> {
                     ArrayList<NutTemplate> filteredNuts = bolt.getNuts().stream()
@@ -93,7 +91,7 @@ public class BoardTemplate {
                 })
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        a.writeJson("src/main/resources/test.json", this);
+        a.writeJson("src/main/resources/games/" + fileName + ".json", this);
     }
 
     public void fill() {
@@ -127,8 +125,6 @@ public class BoardTemplate {
                 this.bolts.get(i).getNuts().set(j, new NutTemplate(foo.get(i).get(j)));
             }
         }
-        System.out.println(this.bolts);
-
     }
 
     public void randomize(int width, int height) {

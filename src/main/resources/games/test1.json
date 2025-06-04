@@ -1,4 +1,5 @@
 {
+  "game_id" : "2644cde7-2363-4f45-835a-64689446855a",
   "bolts" : [ {
     "maxBoltLength" : 5,
     "nuts" : [ {
@@ -6,15 +7,15 @@
       "color" : null,
       "type" : null
     }, {
-      "value" : 1,
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
       "color" : null,
       "type" : null
     }, {
       "value" : 3,
-      "color" : null,
-      "type" : null
-    }, {
-      "value" : 1,
       "color" : null,
       "type" : null
     }, {
@@ -30,7 +31,11 @@
       "color" : null,
       "type" : null
     }, {
-      "value" : 3,
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
       "color" : null,
       "type" : null
     }, {
@@ -38,11 +43,7 @@
       "color" : null,
       "type" : null
     }, {
-      "value" : 2,
-      "color" : null,
-      "type" : null
-    }, {
-      "value" : 2,
+      "value" : 1,
       "color" : null,
       "type" : null
     } ],
@@ -54,19 +55,19 @@
       "color" : null,
       "type" : null
     }, {
-      "value" : 1,
-      "color" : null,
-      "type" : null
-    }, {
-      "value" : 3,
-      "color" : null,
-      "type" : null
-    }, {
       "value" : 3,
       "color" : null,
       "type" : null
     }, {
       "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 3,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 3,
       "color" : null,
       "type" : null
     } ],
