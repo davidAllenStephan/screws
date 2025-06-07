@@ -5,7 +5,7 @@
 
 package davidmarino;
 
-import static davidmarino.davidmarinomenu.Menu.showMainMenu;
+import static davidmarino.initiator.MenuStart.showMainMenu;
 
 /** TODO
  * controls
