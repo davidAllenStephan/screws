@@ -44,5 +44,9 @@ public class Nut {
         return this.value == o.getValue();
     }
 
+    public Nut copy() {
+        return new Nut(this.value, this.color, this.type);
+    }
+
 
 }

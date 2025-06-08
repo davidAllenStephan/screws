@@ -11,8 +11,6 @@ import static davidmarino.initiator.MenuStart.showMainMenu;
  * controls
  * record save feature
  * leaderboard
- * menu multiple save files
- * menu multiple load files
  */
 
 public class Main {

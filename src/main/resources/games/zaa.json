@@ -1,0 +1,67 @@
+{
+  "bolts" : [ {
+    "nuts" : [ {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    } ],
+    "maxBoltLength" : 4,
+    "empty" : false
+  }, {
+    "nuts" : [ {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 1,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    }, {
+      "value" : 2,
+      "color" : null,
+      "type" : null
+    } ],
+    "maxBoltLength" : 4,
+    "empty" : false
+  }, {
+    "nuts" : [ null, null, null, null ],
+    "maxBoltLength" : 4,
+    "empty" : false
+  }, {
+    "nuts" : [ null, null, null, null ],
+    "maxBoltLength" : 4,
+    "empty" : false
+  } ],
+  "leaderboard" : {
+    "records" : [ {
+      "duration" : 6406,
+      "recordId" : "02ea905d-9d6c-4580-951a-76ea9118ff2f",
+      "userId" : null,
+      "startTime" : 1749343708546,
+      "endTime" : 1749343714952
+    }, {
+      "duration" : 5546,
+      "recordId" : "492b6e00-e263-439b-9852-b5ac74f999dc",
+      "userId" : null,
+      "startTime" : 1749343733423,
+      "endTime" : 1749343738969
+    } ]
+  },
+  "gameId" : "125ebeb7-6854-4429-a934-aa085802c533"
+}

@@ -18,22 +18,28 @@ public class AccessFile<T> {
         this.type = type;
     }
 
-    public T readJson(String path) {
-        System.out.println(path);
+    public T readJson(File file) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(new File(path), type);
+            return mapper.readValue(file, type);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to read JSON from file: " + path, e);
+            throw new RuntimeException("Failed to read JSON from file: " + file.getName(), e);
         }
     }
 
-    public void writeJson(String path, T data) {
+    public void writeJson(File file, T data) {
         ObjectMapper mapper = new ObjectMapper();
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path), data);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, data);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to write JSON to file: " + path, e);
+            throw new RuntimeException("Failed to write JSON to file: " + file.getName(), e);
         }
     }
 }

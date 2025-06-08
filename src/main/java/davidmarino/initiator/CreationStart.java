@@ -11,6 +11,8 @@ import davidmarino.service.BoardService;
 import davidmarino.utility.CreatorInput;
 import davidmarino.utility.Input;
 
+import java.io.File;
+
 public class CreationStart {
     public static void start() {
         Board boardCreator = new Board(5, 5);
@@ -31,8 +33,11 @@ public class CreationStart {
                 }
                 case -5 -> {
                     String[] s = Input.get();
-                    String res = String.join("", s);
-                    boardService.save(res);
+                    StringBuilder builder = new StringBuilder();
+                    builder.append("src/main/resources/games/");
+                    builder.append(String.join("", s));
+                    builder.append(".json");
+                    boardService.save(new File(builder.toString()));
                     return;
                 }
                 case -6 -> {

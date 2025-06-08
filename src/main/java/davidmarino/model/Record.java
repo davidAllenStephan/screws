@@ -13,38 +13,40 @@ import java.util.UUID;
 
 @Data
 public class Record {
-    private String id;
+    private String recordId;
+    private String userId;
     private long startTime;
     private long endTime;
     private long duration;
 
     @JsonCreator
-    public Record(@JsonProperty("id") String id, @JsonProperty("startTime") long startTime, @JsonProperty("endTime") long endTime, @JsonProperty("duration") long duration) {
-        this.id = id;
+    public Record(@JsonProperty("record_id") String recordId, @JsonProperty("user_id") String userId, @JsonProperty("start_time") long startTime, @JsonProperty("end_time") long endTime, @JsonProperty("duration") long duration) {
+        this.recordId = recordId;
+        this.userId = userId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
     }
 
     public Record(long startTime, long endTime, long duration) {
-        this.id = UUID.randomUUID().toString();
+        this.recordId = UUID.randomUUID().toString();
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = duration;
     }
 
     public Record(long startTime, long endTime) {
-        this.id = UUID.randomUUID().toString();
+        this.recordId = UUID.randomUUID().toString();
         this.startTime = startTime;
         this.endTime = endTime;
         this.duration = endTime - startTime;
     }
     public boolean equals(String id) {
-        return this.id.equals(id);
+        return this.recordId.equals(id);
     }
 
     public Record find(String id) {
-        if (this.id.equals(id)) return this;
+        if (this.recordId.equals(id)) return this;
         return null;
     }
 

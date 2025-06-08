@@ -8,6 +8,7 @@ package davidmarino.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import davidmarino.utility.AccessFile;
 import lombok.Data;
 
 import java.io.File;
@@ -16,32 +17,34 @@ import java.util.ArrayList;
 
 @Data
 public class Leaderboard {
-    private String game_id;
     private ArrayList<Record> records;
 
-    @JsonCreator
-    public Leaderboard(@JsonProperty("game_id") String game_id, @JsonProperty("records") ArrayList<Record> records) {
-        this.game_id = game_id;
-        this.records = records;
-    }
-    public Leaderboard(String game_id) {
-        this.game_id = game_id;
+    public Leaderboard() {
         this.records = new ArrayList<>();
     }
+
+    @JsonCreator
+    public Leaderboard(@JsonProperty("records") ArrayList<Record> records) {
+        this.records = records;
+    }
+
     public void addRecord(Record r) {
         this.records.add(r);
     }
+
     public Record getRecord(String id) {
         for (Record record : records) {
             if (record.equals(id)) return record;
         }
             return null;
     }
+
     public void sort() {
         this.records.sort((p, q) -> {
             return p.getDuration() > q.getDuration() ? 1 : -1;
         });
     }
+
     public void save(String path) {
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -50,6 +53,7 @@ public class Leaderboard {
             throw new RuntimeException("Failed to write JSON to file", e);
         }
     }
+
     public static Leaderboard read(String path) {
         ObjectMapper mapper = new ObjectMapper();
         try {

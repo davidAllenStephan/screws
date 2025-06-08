@@ -11,6 +11,7 @@ import davidmarino.model.Nut;
 import davidmarino.utility.AccessFile;
 import davidmarino.utility.Display;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -124,18 +125,19 @@ public class BoardService {
         System.out.print(sb.toString());
         System.out.flush();
     }
-    public void save(String fileName) {
+    public void save(File file) {
         AccessFile<Board> a = new AccessFile<>(Board.class);
-        board.setGame_id(UUID.randomUUID().toString());
+        board.setGameId(UUID.randomUUID().toString());
         board.setBolts(board.getBolts().stream()
                 .map(bolt -> {
                     ArrayList<Nut> filteredNuts = bolt.getNuts().stream()
-                            .filter(nut -> nut.getValue() != 0).collect(Collectors.toCollection(ArrayList::new));
+                            .filter(nut -> nut.getValue() != 0)
+                            .collect(Collectors.toCollection(ArrayList::new));
                     return new Bolt(filteredNuts, board.getHeight());
                 })
                 .collect(Collectors.toCollection(ArrayList::new)));
 
-        a.writeJson("src/main/resources/games/" + fileName + ".json", board);
+        a.writeJson(file, board);
     }
 
     public void fill() {

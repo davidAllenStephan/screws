@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class Bolt {
     private ArrayList<Nut> nuts;
     private int maxBoltLength;
-    private int maxNuts;
     private boolean empty;
 
     @JsonCreator
@@ -25,7 +24,6 @@ public class Bolt {
         for (int i = nuts.size(); i < maxBoltLength; i++) {
             nuts.addFirst(null);
         }
-        this.maxNuts = nuts.size();
         this.maxBoltLength = maxBoltLength;
     }
 
@@ -35,7 +33,6 @@ public class Bolt {
             this.nuts.add(nut == null ? null : new Nut(nut));
         }
         this.maxBoltLength = bolt.maxBoltLength;
-        this.maxNuts = bolt.maxNuts;
     }
 
     public Bolt(int maxBoltLength) {
@@ -51,11 +48,14 @@ public class Bolt {
         this.maxBoltLength = height;
     }
 
-    public Bolt(int maxBoltLength, int value) {
-        this.nuts = new ArrayList<>();
-        this.maxBoltLength = maxBoltLength;
-        for (int i = 0; i < maxBoltLength; i++) {
-            this.nuts.add(new Nut(value));
+    public Bolt copy() {
+        ArrayList<Nut> copiedNuts = new ArrayList<>();
+        for (Nut nut : this.nuts) {
+            if (nut != null) {
+                copiedNuts.add(nut.copy());
+            }
         }
+        return new Bolt(copiedNuts, this.maxBoltLength, this.empty);
     }
+
 }
