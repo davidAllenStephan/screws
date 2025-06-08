@@ -61,6 +61,12 @@
       "userId" : null,
       "startTime" : 1749343733423,
       "endTime" : 1749343738969
+    }, {
+      "duration" : 5477,
+      "recordId" : "90e8ee6f-af16-4ce0-ae23-a53acb1c54d1",
+      "userId" : null,
+      "startTime" : 1749344947002,
+      "endTime" : 1749344952479
     } ]
   },
   "gameId" : "125ebeb7-6854-4429-a934-aa085802c533"

@@ -19,6 +19,7 @@ public class Board {
     private String gameId;
     private ArrayList<Bolt> bolts;
     private Leaderboard leaderboard;
+    private String creatorId;
 
     @JsonIgnore
     private ArrayList<ArrayList<Bolt>> boltHistory;
@@ -40,6 +41,7 @@ public class Board {
         this.height = height;
         this.bolts = new ArrayList<>();
         this.leaderboard = new Leaderboard();
+        this.creatorId = "";
     }
 
     public Board copy() {

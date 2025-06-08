@@ -28,13 +28,6 @@ public class Record {
         this.duration = duration;
     }
 
-    public Record(long startTime, long endTime, long duration) {
-        this.recordId = UUID.randomUUID().toString();
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.duration = duration;
-    }
-
     public Record(long startTime, long endTime) {
         this.recordId = UUID.randomUUID().toString();
         this.startTime = startTime;
@@ -45,13 +38,13 @@ public class Record {
         return this.recordId.equals(id);
     }
 
-    public Record find(String id) {
-        if (this.recordId.equals(id)) return this;
-        return null;
-    }
+//    public Record find(String id) {
+//        if (this.recordId.equals(id)) return this;
+//        return null;
+//    }
 
-    public boolean lessThan(long duration) {
-        return this.duration < duration;
-    }
+//    public boolean lessThan(long duration) {
+//        return this.duration < duration;
+//    }
 
 }

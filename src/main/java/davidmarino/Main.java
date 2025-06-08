@@ -5,11 +5,10 @@
 
 package davidmarino;
 
-import static davidmarino.initiator.MenuStart.showMainMenu;
+import davidmarino.menu.MainMenu;
 
 /** TODO
  * controls
- * record save feature
  * leaderboard
  */
 
@@ -18,7 +17,7 @@ public class Main {
         System.out.println("Hello World!");
         boolean running = true;
         while (running) {
-            running = showMainMenu();
+            running = MainMenu.showMainMenu();
         }
     }
 }

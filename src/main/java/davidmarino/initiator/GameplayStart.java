@@ -1,12 +1,12 @@
 package davidmarino.initiator;
 
+import davidmarino.menu.GameplayMenu;
 import davidmarino.model.Board;
 import davidmarino.service.BoardService;
 import davidmarino.service.LeaderboardService;
 import davidmarino.utility.AccessFile;
 import davidmarino.utility.GameplayInput;
 import davidmarino.utility.StopWatch;
-import davidmarino.model.Leaderboard;
 import davidmarino.model.Record;
 
 import java.io.File;
@@ -23,7 +23,6 @@ public class GameplayStart {
 
         // Setting up services
         BoardService boardService = new BoardService(board);
-        BoardService boardServiceCopy = new BoardService(boardCopy);
         LeaderboardService leaderboardService = new LeaderboardService(board.getLeaderboard());
 
         // Initial setup
@@ -49,6 +48,6 @@ public class GameplayStart {
             }
             boardService.print();
         }
-        MenuStart.showGameplayMenu();
+        GameplayMenu.show();
     }
 }
