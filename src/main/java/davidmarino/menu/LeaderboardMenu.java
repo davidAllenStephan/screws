@@ -11,6 +11,11 @@ import davidmarino.model.Record;
 import davidmarino.utility.AccessFile;
 
 import java.io.File;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static davidmarino.menu.Utility.*;
 import static davidmarino.menu.Utility.pauseForEnter;
@@ -22,20 +27,21 @@ public class LeaderboardMenu {
         AccessFile<Board> b = new AccessFile<>(Board.class);
         Board bb = b.readJson(file);
         Leaderboard leaderboard = bb.getLeaderboard();
-        String format = "| %-36s | %-8s | %-11s | %-13s | %-13s |\n";
+        String format = "| %-13s | %-13s | %-13s |\n";
         String divider = "+--------------------------------------+----------+-------------+---------------+---------------+";
         System.out.println(divider);
-        System.out.printf(format, "Record ID", "Duration", "User ID", "Start Time", "End Time");
+        System.out.printf(format, "Duration", "User ID", "Datetime");
         System.out.println(divider);
 
+
         for (Record r : leaderboard.getRecords()) {
+            long millis = System.currentTimeMillis(); // example millis
+
             System.out.printf(
                     format,
-                    r.getRecordId(),
-                    r.getDuration(),
+                    r.getDuration() / 1000.0,
                     r.getUserId() == null ? "null" : r.getUserId(),
-                    r.getStartTime(),
-                    r.getEndTime()
+                    r.getDatetime()
             );
         }
         System.out.println(divider);

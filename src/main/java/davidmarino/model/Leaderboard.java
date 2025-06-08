@@ -8,7 +8,6 @@ package davidmarino.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import davidmarino.utility.AccessFile;
 import lombok.Data;
 
 import java.io.File;

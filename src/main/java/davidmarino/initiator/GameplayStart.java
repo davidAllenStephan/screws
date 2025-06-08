@@ -1,6 +1,7 @@
 package davidmarino.initiator;
 
 import davidmarino.menu.GameplayMenu;
+import davidmarino.menu.RecordMenu;
 import davidmarino.model.Board;
 import davidmarino.service.BoardService;
 import davidmarino.service.LeaderboardService;
@@ -33,7 +34,8 @@ public class GameplayStart {
         while (true) {
             if (boardService.isComplete()) {
                 stopWatch.stop();
-                leaderboardService.addRecord(new Record(stopWatch.getStartTime(), stopWatch.getStopTime()));
+                String name = RecordMenu.show(stopWatch.getStopTime() - stopWatch.getStartTime());
+                leaderboardService.addRecord(new Record(stopWatch.getStartTime(), stopWatch.getStopTime(), name));
                 boardCopy.setLeaderboard(board.getLeaderboard());
                 accessJson.writeJson(selectedFile, boardCopy);
                 System.out.println("Completed!");
